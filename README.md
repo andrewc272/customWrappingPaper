@@ -31,5 +31,4 @@ I would like to first have the ability to edit the box and then view it in 3D.
 
 ### Backend
 
-- node.js
-
+- python
