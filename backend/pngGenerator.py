@@ -12,29 +12,50 @@ When this script is finished it should:
 '''
 
 from PIL import Image
+from backend import canvas
 
+# RGB colors
+RGB_white = (255, 255, 255)
 
-front = Image.open("Images/front.png")
-back = Image.open("Images/back.png")
-right = Image.open("Images/right.png")
-left = Image.open("Images/left.png")
-up = Image.open("Images/up.png")
-down = Image.open("Images/down.png")
+# images
+image_front = Image.open("Images/front.png")
+image_back = Image.open("Images/back.png")
+image_right = Image.open("Images/right.png")
+image_left = Image.open("Images/left.png")
+image_up = Image.open("Images/up.png")
+image_down = Image.open("Images/down.png")
 
-height = -1
-width = -1
-depth = -1
+canvas = Image.new('RGB', (0,0), RGB_white)
+canvas_grid = []
 
-
-def getDimensions():
-    pass
-
+# box
+box_dimensions = (-1, -1, -1) # height, width, depth
 
 def main():
     getDimensions()
     makeCanvas()
-    fillCanvas()
+    fillCanvas(0, 0)
     showCanvas()
+
+def getDimensions():
+    for i in range(0,3):
+        box_dimensions[i] = (float)input(f'What is dimension i: ')
+    box_dimensions.sort(reverse=True)
+
+def makeCanvas():
+    box_height, box_width, box_depth = box_dimensions
+    canvas_height = ( box_depth * 1.5 ) + box_height
+    canvas_width = ( 2 * box_width ) + ( 2 * box_depth )
+    canvas = Image.new('RGB', (canvas_width, canvas_height), RGB_white)
+
+
+def fillCanvas(x, y):
+    if isGrid(x, y):
+
+def isGrid(x, y):
+    box_height, box_width, box_depth = box_dimensions
+
+
 
 if __name__ == '__main__':
     main()
